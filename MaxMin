@@ -25,6 +25,15 @@ class Max : IOperation
 
         public float status {
             get { return current_status; }}
+            
+            
+        private void DataValidation()
+        {
+            
+
+            current_status = 0.5f;
+           
+        }
        
         
 
