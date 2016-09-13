@@ -1,9 +1,9 @@
-class OperationTemplate : IOperation
+class Factorial : IOperation
     {
         private readonly int my_opp_id;
         private float current_status;
 
-        public OperationTemplate()
+        public Factorial()
         {
             my_opp_id = int.MaxValue; //version number
             current_status = float.NaN; //begin
@@ -56,14 +56,18 @@ class OperationTemplate : IOperation
             }
         }
 
-        private object Operation(object var1, object var2)
+        private object Operation(object var, object var2)
         {
-            return null;
+            if ((int)var==1)
+            {
+                return var;
+            }
+            return ((int)var) * (int)Operation((int)var - 1,var2);
         }
 
         private double GetResult()
         {
             data_validation();
-            return (double)Operation(variable_1, variable_2);
+            return (double)Operation(variable_1,variable_2);
         }
     }
