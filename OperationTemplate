@@ -1,0 +1,69 @@
+class OperationTemplate : IOperation
+    {
+        private readonly int my_opp_id;
+        private float current_status;
+
+        public OperationTemplate()
+        {
+            my_opp_id = int.MaxValue; //version number
+            current_status = float.NaN; //begin
+        }
+        //--------------------------------------------------------------------
+        public double result  //common
+        {
+            get
+            {
+                return GetResult();//поскольку придется тестировать еще раз, то стоит от переменных избавится
+
+            }
+            set
+            {
+                result_validation_set();
+            }
+        }
+
+
+        public double variable_1 { get; set; } //common
+        public double variable_2 { get; set; }//common
+
+        public int opp_id //common
+        {
+            get { return my_opp_id; }
+        }
+        public float status { get { return current_status; } } //common
+
+        //----------------------------------------------------------------------
+
+        private void result_validation_set()
+        {
+            throw new Exception("FIG VAM!!!");
+        }
+
+        private void data_validation()
+        {
+            if (Double.IsNaN(variable_1))
+            {
+                Console.WriteLine("Warning!.Variable 1 was emty.By default it was taken zero");
+                variable_1 = double.NaN;
+
+            }
+
+            if (Double.IsNaN(variable_2))
+            {
+                Console.WriteLine("Warning!.Variable 2 was emty.By default it was taken zero");
+                variable_2 = double.NaN;
+
+            }
+        }
+
+        private object Operation(object var1, object var2)
+        {
+            return null;
+        }
+
+        private double GetResult()
+        {
+            data_validation();
+            return (double)Operation(variable_1, variable_2);
+        }
+    }
